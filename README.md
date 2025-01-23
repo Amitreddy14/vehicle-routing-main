@@ -10,15 +10,15 @@ A simulated-annealing based local search algorithm for solving the NP-complete C
 >
 > The goal of the problem is to optimize for distance: while ensuring that all of the aforementioned constraints are met, we want to minimize the total distance travelled by the fleet of vehicles (in order to minimize travel-related costs).
 
-For information on how we built our CVRP solver, optimizations we made, and more, look through our [presentation](https://github.com/Amitreddy14/vehicle-routing-main/blob/main/vehicle-routing-main/Presentation.pdf)!
+For information on how we built our CVRP solver, optimizations we made, and more, look through our [presentation](https://github.com/Amitreddy14/vehicle-routing-main/blob/main/Presentation.pdf)!
 
-All the code for our solver is within the [`src/solver/ls/`](https://github.com/Amitreddy14/vehicle-routing-main/tree/main/vehicle-routing-main/src/solver/ls) subdirectory.
+All the code for our solver is within the [`src/solver/ls/`](https://github.com/Amitreddy14/vehicle-routing-main/tree/main/src/solver/ls) subdirectory.
 
 ## Results
 
 While there is certainly further work that could be done to improve our solver, we were quite happy with the results we achieved. For reference, our solver outperformed Google OR-Tools' CVRP solver on all instances in the `input/` directory after running for 5 minutes.
 
-You can see the solver's results after running on these instances in the [`results.log`](https://github.com/Amitreddy14/vehicle-routing-main/blob/main/vehicle-routing-main/results.log) file, along with an explanation of how to interpret the result in a further section of this README.
+You can see the solver's results after running on these instances in the [`results.log`](https://github.com/Amitreddy14/vehicle-routing-main/blob/main/results.log) file, along with an explanation of how to interpret the result in a further section of this README.
 
 ## Usage
 
@@ -44,7 +44,7 @@ If you want to run the solver on all the instance files in a particular director
 ```bash
 ./runAll.sh <input-folder> <timeout (in seconds)> <output-filename>
 ```
-* For example, to generate the [`results.log`](https://github.com/Amitreddy14/vehicle-routing-main/blob/main/vehicle-routing-main/results.log) file containing solver results on all the instances in the `input/` directory with a 300 second timeout (per instance), we ran
+* For example, to generate the [`results.log`](https://github.com/Amitreddy14/vehicle-routing-main/blob/main/results.log) file containing solver results on all the instances in the `input/` directory with a 300 second timeout (per instance), we ran
   ```bash
   ./runAll.sh input/ 300 results.log
   ```
