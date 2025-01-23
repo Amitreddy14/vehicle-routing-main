@@ -61,7 +61,7 @@ Each instance is expected to be found in its own file. The structure of this fil
 <customer-n-demand> <customer-n-x-coord> <customer-n-y-coord>
 ```
 * Here, `customer-0` represents the depot. Therefore, `customer-0`'s demand is always 0, and the only relevant information on this line is the x and y coordinates of the depot.
-* You can see an example of an input file in the [`toy_inputs/5_4_10.vrp`](https://github.com/Amitreddy14/vehicle-routing-main/blob/main/vehicle-routing-main/toy_inputs/5_4_10.vrp) file
+* You can see an example of an input file in the [`toy_inputs/5_4_10.vrp`](https://github.com/Amitreddy14/vehicle-routing-main/blob/main/toy_inputs/5_4_10.vrp) file
 
 ### Output Format
 
