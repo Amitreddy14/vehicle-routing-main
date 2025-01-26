@@ -65,4 +65,13 @@ public class CrossRouteCustomerMove implements MovingStrategy {
             return newSolution;
         }
 
-        
+        // compute new total distance -- we can compute this by seeing the change in distance for the two
+        // modified routes
+        List<Integer> oldRoute1 = currentSolution.routes.get(destinationRouteIdx);
+        List<Integer> oldRoute2 = currentSolution.routes.get(sourceRouteIdx);
+        newSolution.totalDistance += this.routeDistanceChange(oldRoute1, newRoute1, instance) + this.routeDistanceChange(oldRoute2, newRoute2, instance);
+
+        return newSolution;
+    }
+}
+
