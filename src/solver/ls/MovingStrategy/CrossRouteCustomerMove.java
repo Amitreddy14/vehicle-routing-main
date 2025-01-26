@@ -43,3 +43,10 @@ public class CrossRouteCustomerMove implements MovingStrategy {
         if (currentSolution.routes.get(sourceRouteIdx).size() <= 2)
             return newSolution;
         int customerSourceIdx = pickRandomCustomerFromVehicleRoute(currentSolution, sourceRouteIdx);
+
+         // pick a new route to move them to
+         int destinationRouteIdx = random.nextInt(currentSolution.routes.size());
+         if (destinationRouteIdx == sourceRouteIdx)
+             return newSolution;
+         // pick a random position in the route to move them to
+         int customerDestinationIdx = 1 + random.nextInt(currentSolution.routes.get(destinationRouteIdx).size() - 1);   
