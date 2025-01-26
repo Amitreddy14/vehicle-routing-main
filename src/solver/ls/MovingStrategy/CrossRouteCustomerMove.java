@@ -34,3 +34,12 @@ public class CrossRouteCustomerMove implements MovingStrategy {
      * @param currentSolution: the solution from which we are moving
      * @return the (candidate) solution obtained after moving a single customer
      */
+
+     public Solution getSingleNeighbor(Solution currentSolution, VRPLocalSearch instance) {
+        Solution newSolution = currentSolution.copy();
+
+        // pick a random customer to move
+        int sourceRouteIdx = pickRandomVehicle(currentSolution);
+        if (currentSolution.routes.get(sourceRouteIdx).size() <= 2)
+            return newSolution;
+        int customerSourceIdx = pickRandomCustomerFromVehicleRoute(currentSolution, sourceRouteIdx);
