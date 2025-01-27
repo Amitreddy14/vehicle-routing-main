@@ -32,4 +32,16 @@ public interface MovingStrategy {
                 return false;
             seenCustomers[customer] = 1;
         }
-        
+        // the vehicle doesn't exceed its capacity
+        int vehicleCapacity = instance.getVehicleCapacity();
+        int capacityUsed = 0;
+        for (int customer : route) {
+            capacityUsed += instance.demandOfCustomer[customer];
+            if (capacityUsed > vehicleCapacity)
+                return false;
+        }
+
+        return true;
+    }
+         
+    
