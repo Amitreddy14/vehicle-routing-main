@@ -24,3 +24,19 @@ public class RandomCustomerMovement implements MovingStrategy {
         } while (currentSolution.routes.get(vehicleIdx).size() <= 2);
         return vehicleIdx;
     }
+
+    private int pickRandomCustomerFromVehicleRoute(Solution currentSolution, int vehicleIdx) {
+        // add 1 to result to prevent picking customer at index 0 (avoid depot)
+        // subtract 2 at end -- subtract 1 to avoid picking last index (depot), and
+        //   subtract another 1 to account for adding 1 in the beginning
+        return 1 + random.nextInt(currentSolution.routes.get(vehicleIdx).size() - 2);
+    }
+
+    /**
+     * Picks a random customer, and moves them to a random position in some route
+     * (could be the same route in which they already were)
+     *
+     * @param currentSolution: the solution from which we are moving
+     * @return the move that is made to get to the next solution
+     */
+    
