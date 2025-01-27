@@ -66,4 +66,18 @@ public class RandomCustomerMovement implements MovingStrategy {
             // no need to update total distance here -- we only consider feasible solutions so this will be discarded
             return newSolution;
         }
-        
+        // compute new total distance -- we can compute this by seeing the change in distance for the two
+        // modified routes
+        List<Integer> oldRoute1 = currentSolution.routes.get(destinationRouteIdx);
+        List<Integer> oldRoute2 = currentSolution.routes.get(sourceRouteIdx);
+        // since the destination and source indices can be the same here, we want to make sure not to double-add
+        // and miscompute the total distance
+        if (destinationRouteIdx != sourceRouteIdx) {
+            newSolution.totalDistance += this.routeDistanceChange(oldRoute1, newRoute1, instance) + this.routeDistanceChange(oldRoute2, newRoute2, instance);
+        } else {
+            newSolution.totalDistance += this.routeDistanceChange(oldRoute1, newRoute1, instance);
+        }
+
+        return newSolution;
+    }
+}
