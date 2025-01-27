@@ -47,3 +47,23 @@ public class RandomCustomerMovement implements MovingStrategy {
         if (currentSolution.routes.get(sourceRouteIdx).size() <= 2)
             return newSolution;
         int customerSourceIdx = pickRandomCustomerFromVehicleRoute(currentSolution, sourceRouteIdx); 
+
+          // pick a new route to move them to
+          int destinationRouteIdx = random.nextInt(currentSolution.routes.size());
+          // pick a random position in the destination route to move them to
+          int customerDestinationIdx = 1 + random.nextInt(currentSolution.routes.get(destinationRouteIdx).size() - 1);
+
+          // update the new solution
+        int customer = currentSolution.routes.get(sourceRouteIdx).get(customerSourceIdx);
+        newSolution.routes.get(destinationRouteIdx).add(customerDestinationIdx, customer);
+        newSolution.routes.get(sourceRouteIdx).remove(customerSourceIdx);
+
+        // run verification -- we only need to check that the two routes that were changed are still valid
+        List<Integer> newRoute1 = newSolution.routes.get(destinationRouteIdx);
+        List<Integer> newRoute2 = newSolution.routes.get(sourceRouteIdx);
+        newSolution.isFeasible = this.isRouteFeasible(newRoute1, instance) && this.isRouteFeasible(newRoute2, instance);
+        if (!newSolution.isFeasible) {
+            // no need to update total distance here -- we only consider feasible solutions so this will be discarded
+            return newSolution;
+        }
+        
