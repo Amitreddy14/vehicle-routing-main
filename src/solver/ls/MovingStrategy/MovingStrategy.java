@@ -43,5 +43,22 @@ public interface MovingStrategy {
 
         return true;
     }
+    default double routeDistanceChange(List<Integer> oldRoute, List<Integer> newRoute, VRPLocalSearch instance) {
+        double oldRouteDistance = 0.0;
+        for (int customerIdx = 1; customerIdx < oldRoute.size(); customerIdx++) {
+            int prevCustomer = oldRoute.get(customerIdx - 1);
+            int thisCustomer = oldRoute.get(customerIdx);
+            oldRouteDistance += instance.distance[prevCustomer][thisCustomer];
+        }
+
+        double newRouteDistance = 0.0;
+        for (int customerIdx = 1; customerIdx < newRoute.size(); customerIdx++) {
+            int prevCustomer = newRoute.get(customerIdx - 1);
+            int thisCustomer = newRoute.get(customerIdx);
+            newRouteDistance += instance.distance[prevCustomer][thisCustomer];
+        }
+
+        return newRouteDistance - oldRouteDistance;
+    }
+}
          
-    
