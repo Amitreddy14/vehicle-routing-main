@@ -25,4 +25,20 @@ public class TwoOpt implements MovingStrategy {
         //   subtract another 1 to account for adding 1 in the beginning
         return 1 + random.nextInt(route.size() - 2);
     }
-    
+
+    private Solution performTwoOpt(Solution currentSolution, int routeIdx) {
+        Solution newSolution = currentSolution.copy();
+        List<Integer> route = currentSolution.routes.get(routeIdx);
+
+        if (route.size() < 4)
+            return newSolution;
+
+        // pick 2 different customers
+        int custIdx1 = 0;
+        int custIdx2 = 0;
+        while (custIdx1 == custIdx2) {
+            custIdx1 = pickCustomerFromRoute(route);
+            custIdx2 = pickCustomerFromRoute(route);
+        }
+
+
