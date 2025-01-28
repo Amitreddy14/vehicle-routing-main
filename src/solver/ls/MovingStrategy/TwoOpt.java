@@ -41,4 +41,17 @@ public class TwoOpt implements MovingStrategy {
             custIdx2 = pickCustomerFromRoute(route);
         }
 
+        // swap so customer1 idx < customer2 idx
+        int startCustomerIdx = min(custIdx1, custIdx2);
+        int endCustomerIdx = max(custIdx1, custIdx2);
+
+        for (int i = startCustomerIdx; i <= endCustomerIdx; i++) {
+            int toSwapCustomer = route.get(endCustomerIdx - (i - startCustomerIdx));
+            newSolution.routes.get(routeIdx).set(i, toSwapCustomer);
+        }
+
+        return newSolution;
+    }
+
+
 
