@@ -52,7 +52,7 @@ public class TwoOpt implements MovingStrategy {
 
         return newSolution;
     }
-
+    
         /**
      * Picks a random route, and performs a random two-opt swap within it
      *
