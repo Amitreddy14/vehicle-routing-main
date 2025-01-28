@@ -53,5 +53,32 @@ public class TwoOpt implements MovingStrategy {
         return newSolution;
     }
 
+        /**
+     * Picks a random route, and performs a random two-opt swap within it
+     *
+     * @param currentSolution: the solution from which we are making the move
+     * @return the move that is made to get to the next solution
+     */
+    public Solution getSingleNeighbor(Solution currentSolution, VRPLocalSearch instance) {
+        int routeIdx = random.nextInt(currentSolution.routes.size());
+        Solution newSolution = performTwoOpt(currentSolution, routeIdx);
+
+        // run verification -- we only need to check that the two routes that were changed are still valid
+        List<Integer> newRoute = newSolution.routes.get(routeIdx);
+        newSolution.isFeasible = this.isRouteFeasible(newRoute, instance);
+        if (!newSolution.isFeasible) {
+            // no need to update total distance here -- we only consider feasible solutions so this will be discarded
+            return newSolution;
+        }
+
+        // compute new total distance -- we can compute this by seeing the change in distance for the two
+        // modified routes
+        List<Integer> oldRoute = currentSolution.routes.get(routeIdx);
+        newSolution.totalDistance += this.routeDistanceChange(oldRoute, newRoute, instance);
+
+        return newSolution;
+    }
+}
+
 
 
