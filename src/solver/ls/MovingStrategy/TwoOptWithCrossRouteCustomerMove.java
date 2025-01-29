@@ -16,3 +16,16 @@ public class TwoOptWithCrossRouteCustomerMove implements MovingStrategy {
         this.crossRouteCustomerMove = new CrossRouteCustomerMove();
         this.twoOpt = new TwoOpt();
     }
+    public Solution getSingleNeighbor(Solution currentSolution, VRPLocalSearch instance) {
+        if (countSinceLastCrossMove < TWO_OPT_BETWEEN_CROSS_MOVE_COUNT) {
+            // do a two-opt
+            countSinceLastCrossMove++;
+            return twoOpt.getSingleNeighbor(currentSolution, instance);
+        }
+        else {
+            // do cross route move
+            countSinceLastCrossMove = 0;
+            return crossRouteCustomerMove.getSingleNeighbor(currentSolution, instance);
+        }
+    }
+}
