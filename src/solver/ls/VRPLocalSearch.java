@@ -1,8 +1,9 @@
 package solver.ls;
 
 import ilog.concert.IloException;
-import ilog.cp.*;
-import ilog.concert.*;
+import ilog.cp.IloCP;
+import ilog.concert.IloIntVar;
+import ilog.concert.IloNumExpr;
 import solver.ls.MovingStrategy.*;
 
 import java.util.ArrayList;
